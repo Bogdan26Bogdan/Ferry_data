@@ -2,6 +2,7 @@ name: cron job
 on:
     schedule:
         - cron: 23 */1 * * * # every hour
+    workflow_dispatch:
 permissions: 
     contents: write
 jobs:
