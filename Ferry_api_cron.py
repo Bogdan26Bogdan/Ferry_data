@@ -4,8 +4,8 @@ import os
 import sys
 import time
 
-end_points = ["https://bcferriesapi.ca/v2/capacity", "https://bcferriesapi.ca/v2/noncapacity/"]
-date = time.strftime("%Y-%m-%d")
+end_points = ["https://bcferriesapi.ca/v2/capacity", "https://bcferriesapi.ca/v2/noncapacity/", "https://bcferriesapi.ca/v2/"]
+date = time.strftime("%Y-%m-%d-%H:%M:%S")
 DIRECTORY = "BC_Ferries_API_DATA/"
 
 
