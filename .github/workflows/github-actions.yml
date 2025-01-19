@@ -1,7 +1,7 @@
 name: cron job
 on:
     schedule:
-        - cron: 15 */1 * * * # every hour
+        - cron: 23 */1 * * * # every hour
 permissions: 
     contents: write
 jobs:
