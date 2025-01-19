@@ -20,7 +20,7 @@ jobs:
                 pip install -r requirements.txt
             - name: Run Ferry API
               run: |
-                python3 Ferry_api.py
+                python3 Ferry_api_cron.py
             - name: Commit and push changes
               run: |
                 git config user.name "github-actions[bot]"
