@@ -1,0 +1,23 @@
+name: cron job
+on:
+    schedule:
+        - cron: '0 * * * *' # every hour
+permissions: 
+    contents: write
+jobs:
+    hourly-job: 
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - run: |
+                pip install -r requirements.txt
+                python3 Ferry_api.py
+                git config user.name "github-actions[bot]"
+                git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                git add .
+                git commit -m "grabbed api data at $(date)"
+                git push
+
+
+              
+                  
