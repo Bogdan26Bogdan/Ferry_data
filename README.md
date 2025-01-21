@@ -7,8 +7,6 @@
 - BC ferries 
     - bcferriesapi.ca
     - https://www.bcferries.com/routes-fares/schedules?gad_source=1&gclid=Cj0KCQiAhbi8BhDIARIsAJLOluf5FxC-s0fcjQ-jgu4AkHtKK0GZXZEcfRLQ49CM4UbSa3LCmJr8j8oaAvOcEALw_wcB
-
-
 - Articles or other
    - https://www.bcferries.com/news-releases/highest-vehicle-traffic-ever-recorded-in-63-year-history
    - https://www.bcferryauthority.com/meetings-and-reports/
