@@ -17,4 +17,4 @@
  - ##### Due to some values being hardcoded: 
     - DB_HOST must be db
     - the port for the api must be 8080
-
+ - ##### Should probably change it so that the cron job in the locally running server to once every 5 or 10 minutes isntead of every minute.
