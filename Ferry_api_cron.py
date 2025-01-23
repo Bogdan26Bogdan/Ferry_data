@@ -6,7 +6,7 @@ import time
 
 #TODO: Replace with local server
 end_points = [
-    "https://bcferriesapi.ca/v2/capacity",
+    "http://localhost:8080/v2/capacity/",
     "https://bcferriesapi.ca/v2/noncapacity/",
     "https://bcferriesapi.ca/v2/",
 ]

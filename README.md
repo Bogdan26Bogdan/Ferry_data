@@ -10,3 +10,11 @@
 - Articles or other
    - https://www.bcferries.com/news-releases/highest-vehicle-traffic-ever-recorded-in-63-year-history
    - https://www.bcferryauthority.com/meetings-and-reports/
+
+
+
+### Details for running the bc ferries api server locally
+ - ##### Due to some values being hardcoded: 
+    - DB_HOST must be db
+    - the port for the api must be 8080
+
