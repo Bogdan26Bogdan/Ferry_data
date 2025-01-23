@@ -9,5 +9,10 @@ SCRIPTPATH=$(dirname "$0")
 # add to git and push 
 cd $SCRIPTPATH
 git add .
-git commit -m "cron job" -m "grabbed api data at $(TZ="America/Vancouver" date)"
-git push
+#TODO: uncomment this when ready to be pushed to main
+#git commit -m "cron job" -m "grabbed api data at $(TZ="America/Vancouver" date)"
+#git push
+
+
+# output the job was a success
+echo "Cron job ran successfully at $(TZ="America/Vancouver" date)" >> $SCRIPTPATH/cron.log
