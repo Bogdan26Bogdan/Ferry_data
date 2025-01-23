@@ -2,10 +2,15 @@ import sqlite3
 import json
 import uuid
 import os
+import datetime
 
 
 def get_date(file_name: str) -> str:
-    return "-".join(file_name.split("_")[1].split("-")[0:3])
+    """time is provided as utc, so we need to convert it to local time"""
+    utc_time_seperated_with_dashes = ("-".join(file_name.split("_")[1].split("-")[0:6])).split(".")[0]
+    utc_datetime = datetime.datetime.strptime(utc_time_seperated_with_dashes, "%Y-%m-%d-%H-%M-%S")
+    # local_time = utc_datetime.replace(tzinfo=datetime.timezone.utc).astimezone(tz=None)
+    return utc_datetime.strftime("%Y-%m-%d-%H-%M-%S")
 
 
 DIRECTORY = "BC_Ferries_API_DATA"
