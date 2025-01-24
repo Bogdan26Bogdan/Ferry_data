@@ -13,12 +13,8 @@ git add .
 # Get the current time in seconds since epoch
 current_time=$(date +%s)
 
-# Get the last modification time of the cron.log file in seconds since epoch
-if [ -f "$SCRIPTPATH/cron.log" ]; then
-    last_mod_time=$(stat -c %Y "$SCRIPTPATH/cron.log")
-else
-    last_mod_time=0
-fi
+# Get the last time a push was made
+last_mod_time=$(cat cron.log | python3 scripts/get_last_push.py)
 
 # Calculate the difference in time
 time_diff=$((current_time - last_mod_time))
