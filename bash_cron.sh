@@ -27,7 +27,7 @@ time_diff=$((current_time - last_mod_time))
 if [ $time_diff -ge 3600 ]; then
     # Update the environment variable TIME_FROM_LAST_PUSH
     export TIME_FROM_LAST_PUSH=$current_time
-
+    echo $TIME_FROM_LAST_PUSH
     git pull
     git commit -m "cron job" -m "grabbed api data at $(TZ="America/Vancouver" date)"
     git push
