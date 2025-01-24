@@ -18,3 +18,10 @@
     - DB_HOST must be db
     - the port for the api must be 8080
  - ##### Should probably change it so that the cron job in the locally running server to once every 5 or 10 minutes isntead of every minute.
+
+### Setting up cron: 
+To open the cron page for the user:
+```crontab -e```
+
+Cron command to run on every 5th minute that you paste at the end of the cron page:
+```*/5 * * * * <path to bash_cron.sh>```
