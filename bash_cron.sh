@@ -13,11 +13,11 @@ git add .
 # Get the current time in seconds since epoch
 current_time=$(date +%s)
 
-# Get the last modification time of the cron.log file in seconds since epoch
-if [ -f "$SCRIPTPATH/cron.log" ]; then
-    last_mod_time=$(stat -c %Y "$SCRIPTPATH/cron.log")
-else
+# Get the last modification time from the environment variable TIME_FROM_LAST_PUSH
+if [ -z "$TIME_FROM_LAST_PUSH" ]; then
     last_mod_time=0
+else
+    last_mod_time=$TIME_FROM_LAST_PUSH
 fi
 
 # Calculate the difference in time
@@ -25,6 +25,9 @@ time_diff=$((current_time - last_mod_time))
 
 # Check if the difference is greater than or equal to 3600 seconds (1 hour) and if it is push to git
 if [ $time_diff -ge 3600 ]; then
+    # Update the environment variable TIME_FROM_LAST_PUSH
+    export TIME_FROM_LAST_PUSH=$current_time
+
     git pull
     git commit -m "cron job" -m "grabbed api data at $(TZ="America/Vancouver" date)"
     git push
