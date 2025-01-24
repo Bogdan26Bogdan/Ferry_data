@@ -6,13 +6,29 @@ SCRIPTPATH=$(dirname "$0")
 # Run the script to query the api
 /usr/bin/python3 $SCRIPTPATH/Ferry_api_cron.py
 
-# add to git and push 
+# Add to git and push 
 cd $SCRIPTPATH
 git add .
-#TODO: uncomment this when ready to be pushed to main
-#git commit -m "cron job" -m "grabbed api data at $(TZ="America/Vancouver" date)"
-#git push
 
+# Get the current time in seconds since epoch
+current_time=$(date +%s)
 
-# output the job was a success
+# Get the last modification time of the cron.log file in seconds since epoch
+if [ -f "$SCRIPTPATH/cron.log" ]; then
+    last_mod_time=$(stat -c %Y "$SCRIPTPATH/cron.log")
+else
+    last_mod_time=0
+fi
+
+# Calculate the difference in time
+time_diff=$((current_time - last_mod_time))
+
+# Check if the difference is greater than or equal to 3600 seconds (1 hour)
+if [ $time_diff -ge 3600 ]; then
+    git commit -m "cron job" -m "grabbed api data at $(TZ="America/Vancouver" date)"
+    git push
+    echo "Pushed to git at $(TZ="America/Vancouver" date)" >> $SCRIPTPATH/cron.log
+fi
+
+# Output the job was a success
 echo "Cron job ran successfully at $(TZ="America/Vancouver" date)" >> $SCRIPTPATH/cron.log
