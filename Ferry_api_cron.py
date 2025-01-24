@@ -4,11 +4,11 @@ import os
 import sys
 import time
 
-#TODO: Replace with local server
+# TODO: Replace with local server
 end_points = [
     "http://localhost:8080/v2/capacity/",
-    "http://localhost:8080/v2/capacity/",
-    "http://localhost:8080/v2/capacity/",
+    "http://localhost:8080/v2/noncapacity/",
+    "http://localhost:8080/v2/",
 ]
 date = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
 DIRECTORY = "BC_Ferries_API_DATA/"
