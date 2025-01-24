@@ -18,7 +18,7 @@ def get_last_push_time():
         time = datetime.datetime.strptime(str_time, "%a %d %b %Y %I:%M:%S %p")
         actual_times.append(time.timestamp())
 
-    print(max(actual_times))
+    print(str(max(actual_times)).split(".")[0])
     
 if __name__ == "__main__":
     get_last_push_time()
