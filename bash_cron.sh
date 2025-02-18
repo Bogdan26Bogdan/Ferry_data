@@ -27,5 +27,5 @@ if [ $time_diff -ge 3600 ]; then
     echo "Pushed to git at $(TZ="America/Vancouver" date)" >> $SCRIPTPATH/cron.log
 fi
 
-# Output the job was a success
-echo "Cron job ran successfully at $(TZ="America/Vancouver" date)" >> $SCRIPTPATH/cron.log
+# Output if the job was a success: judged by whether or not the cron job created files
+echo "Cron job ran $(if [ "$(python3 scripts/cron_job_status.py BC_Ferries_API_DATA 3)" = "True" ]; then echo "successful"; else echo "failed"; fi) at $(TZ="America/Vancouver" date)" >> $SCRIPTPATH/cron.log
