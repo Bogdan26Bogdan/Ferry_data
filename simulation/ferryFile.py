@@ -101,3 +101,26 @@ class Ferry:
         for i in range(len(time_array)):
             late_time += max(time_array[i][1] - time_array[i][0], 0)
         return late_time
+
+    def set_expected_departure_times(self, departure_times: List[int]) -> None:
+        self.ferry_departure_time = []
+        for i in range(len(departure_times)):
+            self.ferry_departure_time.append([departure_times[i], 0])
+
+    def set_expected_arrival_times(self, arrival_times: List[int]) -> None:
+        self.ferry_arrival_time = []
+        for i in range(len(arrival_times)):
+            self.ferry_arrival_time.append([arrival_times[i], 0])
+
+    def validate_arrival_and_departure_times(self) -> bool:
+        if (self.trips_required <= 0):
+            print("The ferry must make at least one trip.")
+            return False     
+        
+        if (len(self.ferry_departure_time) != len(self.ferry_arrival_time)):
+            print("The ferry must have the same number of departure and arrival times.")
+            return False
+        
+        if (len(self.ferry_departure_time) != (len(self.ferry_route) - 1) * self.trips_required + 1):
+            print("The ferry must have the same number of departure times as the number of legs * trips.")
+            return False

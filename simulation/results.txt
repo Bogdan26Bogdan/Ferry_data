@@ -1,0 +1,25 @@
+QNW has completed their trip at time 116.
+Total time with the ferry being late to arrive: 75
+Total time with the ferry being late to depart: 58
+Arrival times [scheduled, actual]: [[0, 0], [15, 17], [45, 82], [80, 116]]
+Departure times [scheduled, actual]: [[0, 0], [25, 69], [70, 84], [90, 0]]
+QNW has completed their trip at time 92.
+Total time with the ferry being late to arrive: 36
+Total time with the ferry being late to depart: 19
+Arrival times [scheduled, actual]: [[0, 0], [15, 27], [45, 57], [80, 92]]
+Departure times [scheduled, actual]: [[0, 0], [25, 44], [70, 70], [90, 0]]
+QNW has completed their trip at time 90.
+Total time with the ferry being late to arrive: 12
+Total time with the ferry being late to depart: 0
+Arrival times [scheduled, actual]: [[0, 0], [15, 17], [45, 39], [80, 90]]
+Departure times [scheduled, actual]: [[0, 0], [25, 25], [70, 70], [90, 0]]
+QNW has completed their trip at time 92.
+Total time with the ferry being late to arrive: 14
+Total time with the ferry being late to depart: 3
+Arrival times [scheduled, actual]: [[0, 0], [15, 17], [45, 43], [80, 92]]
+Departure times [scheduled, actual]: [[0, 0], [25, 28], [70, 70], [90, 0]]
+QNW has completed their trip at time 93.
+Total time with the ferry being late to arrive: 16
+Total time with the ferry being late to depart: 1
+Arrival times [scheduled, actual]: [[0, 0], [15, 18], [45, 39], [80, 93]]
+Departure times [scheduled, actual]: [[0, 0], [25, 26], [70, 70], [90, 0]]
