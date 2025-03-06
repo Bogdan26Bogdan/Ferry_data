@@ -7,6 +7,15 @@ import heapq
 PORT_CODES = ["SWB", "TSA", "SGI", "HSB", "NAN", "LNG"]
 SEEDS = [234,4234,324,325543,2]
 
+def normal_min(value, min):
+    gen_val = int(np.random.normal(value))
+    while gen_val < min:
+        gen_val = int(np.random.normal(value))
+    return gen_val
+
+
+
+
 if __name__ == "__main__":
     for seed_value in SEEDS:
         np.random.seed(seed_value)
@@ -34,9 +43,11 @@ if __name__ == "__main__":
         QNW.ferry_code = "QNW"
         QNW.ferry_capacity = 150
         QNW.ferry_route = [TSA.port_code, SWB.port_code, SGI.port_code, TSA.port_code]
-        QNW.ferry_trip_time = {TSA.port_code + SWB.port_code: 17 + int(np.random.exponential(3)), 
-                                SWB.port_code + SGI.port_code: 13 + int(np.random.exponential(2)), 
-                                SGI.port_code + TSA.port_code: 20 + int(np.random.exponential(5))}
+        for i in range(20):
+            print(f"{np.random.normal(20, 2)}")
+        QNW.ferry_trip_time = {TSA.port_code + SWB.port_code: int(np.random.lognormal(20, 2)),
+                                SWB.port_code + SGI.port_code: normal_min(15, 12), 
+                                SGI.port_code + TSA.port_code: normal_min(20, 15)}
         QNW.set_expected_departure_times([0, 25, 70, 90])
         QNW.set_expected_arrival_times([0, 15, 45, 80])
         QNW.loading_unloading_time = {SWB.port_code + "0": int(np.random.exponential(15)),
