@@ -14,7 +14,7 @@ class Ferry:
         self.ferry_trip_time:Dict[str,int] = None  # {port_code + port_code: trip time}
         self.ferry_departure_time:List[List[int]] = None  # [[scheduled, actual], [scheduled, actual], ...]
         self.ferry_arrival_time:List[List[int]] = None  # [[scheduled, actual], [scheduled, actual], ...]
-        self.loading_unloading_time:Dict[str, int] = None  # {port_code + trip number: loading and loading time}
+        self.loading_unloading_time:Dict[str, int] = None  # {port_code + (current time to the nearest 5): loading and loading time}
         self.trips_required:int = None
         self.trips_completed:int = None
         self.next_function:Callable[[int],int] = self.start_route
@@ -64,10 +64,10 @@ class Ferry:
     def load_and_unload_ferry(self, current_time) -> int:
         # Load and unload the ferry
         self.next_function = self.leave_port
-        return (
-            current_time
-            + self.loading_unloading_time[self.ferry_route[self.ferry_current_port_index].port_code + str(self.trips_completed)]
-        )
+        current_port = self.ferry_route[self.ferry_current_port_index]
+        load_and_unload_time = self.loading_unloading_time[current_port + str(5 * round(current_time / 5))]
+        
+        return current_time + load_and_unload_time
 
     def start_route(self, current_time) -> int:
         assert current_time <= self.ferry_departure_time[0][0]
