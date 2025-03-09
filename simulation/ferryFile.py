@@ -17,10 +17,7 @@ class Ferry:
         self.loading_unloading_time:Dict[str, int] = None  # {port_code + trip number: loading and loading time}
         self.trips_required:int = None
         self.trips_completed:int = None
-        self.next_function:Callable[[int],int] = None
-
-    def run_ferry(self) -> None:
-        pass
+        self.next_function:Callable[[int],int] = self.start_route
 
     def leave_port(self, current_time: int) -> int:
         # Check if the ferry is early and should wait until
