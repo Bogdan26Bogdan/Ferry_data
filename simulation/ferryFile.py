@@ -1,5 +1,5 @@
-from typing import List, Dict, Callable
-
+from typing import List, Dict, Callable, Type 
+from port import Port
 
 class Ferry:
     AT_PORT = 1
@@ -9,7 +9,7 @@ class Ferry:
         self.ferry_name:str = None
         self.ferry_code:str = None
         self.ferry_capacity:int = None
-        self.ferry_route:List[str] = None  # [Port_code, Port_code, ...] ; home port is the first port
+        self.ferry_route:List[Type[Port]] = None  # [Port, Port, ...] ; home port is the first port
         self.ferry_current_port_index:int = 0  # The index of the last port the ferry was at
         self.ferry_trip_time:Dict[str,int] = None  # {port_code + port_code: trip time}
         self.ferry_departure_time:List[List[int]] = None  # [[scheduled, actual], [scheduled, actual], ...]
@@ -23,8 +23,6 @@ class Ferry:
         pass
 
     def leave_port(self, current_time: int) -> int:
-        #TODO: Implement 
-
         # Check if the ferry is early and should wait until
         # the scheduled departure time
         if current_time < self.ferry_departure_time[self.ferry_current_port_index + (self.trips_completed * (len(self.ferry_route) - 1))][
@@ -40,7 +38,7 @@ class Ferry:
 
         self.next_function = self.arrive_port
         return current_time + self.ferry_trip_time[
-            self.ferry_route[self.ferry_current_port_index] + self.ferry_route[self.ferry_current_port_index + 1]
+            self.ferry_route[self.ferry_current_port_index].port_code + self.ferry_route[self.ferry_current_port_index + 1].port_code
         ]
 
     def arrive_port(self, current_time: int) -> int:
@@ -71,7 +69,7 @@ class Ferry:
         self.next_function = self.leave_port
         return (
             current_time
-            + self.loading_unloading_time[self.ferry_route[self.ferry_current_port_index] + str(self.trips_completed)]
+            + self.loading_unloading_time[self.ferry_route[self.ferry_current_port_index].port_code + str(self.trips_completed)]
         )
 
     def start_route(self, current_time) -> int:
