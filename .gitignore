@@ -3,3 +3,6 @@
 *.db
 
 **/*.pyc
+
+
+**/.ipynb_checkpoints/
