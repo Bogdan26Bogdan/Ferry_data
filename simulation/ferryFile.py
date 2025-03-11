@@ -17,7 +17,12 @@ class Ferry:
         self.loading_unloading_time:Dict[str, int] = None  # {port_code + (current time to the nearest 5): loading and loading time}
         self.trips_required:int = None
         self.trips_completed:int = None
-        self.next_function:Callable[[int],int] = self.start_route
+        self.next_function:Callable[[int],int] = self.start_route 
+
+        #TODO: Implement these: just to pay special attention
+        self.shift_change_trip: int = None #Register a shift change to happen after n trips
+        self.shift_change_time: List[float] = None # [schdeuled shift change time, actual shift change time]
+        
 
     def leave_port(self, current_time: int) -> int:
         # Check if the ferry is early and should wait until
@@ -90,6 +95,25 @@ class Ferry:
         late_time = self.sum_late(self.ferry_departure_time)
         print(f"Total time with the ferry being late to depart: {late_time}")
 
+        time_to_be_late = 10
+        times_late_on_arrival = sum([1 for i in self.ferry_arrival_time if i[1]-i[0] > time_to_be_late])
+        print(f"Total times more then {time_to_be_late} increments later then scheduled: {times_late_on_arrival}")
+
+        #The total amount of times the ferry was late at all
+        ferry_late_arrival = sum([1 for i in self.ferry_arrival_time if i[1]-i[0] > 0]) 
+        print(f"The total amount of times the ferry was late at all: {ferry_late_arrival}")
+
+    def total_times_late(self, time_to_qualify_as_late: int) -> List[int]:
+        """Returns the total amount of times late to arrive and depart, 
+        a arrival or departure counts as late if they arrived or departed time_to_qualify_as_late 
+        later then the scheduled"""
+
+        arrival_lates = sum([1 for i in self.ferry_arrival_time if i[1]-i[0] > time_to_qualify_as_late])
+        departure_lates = sum([1 for i in self.ferry_departure_time if i[1]-i[0] > time_to_qualify_as_late])
+        
+        return [arrival_lates, departure_lates]
+        
+        
     def sum_late(self, time_array: List[List[int]]) -> int:
         # Combined late time
         late_time = 0
