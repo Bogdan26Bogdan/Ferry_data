@@ -18,6 +18,7 @@ class Ferry:
         self.trips_required:int = None
         self.trips_completed:int = None
         self.next_function:Callable[[int],int] = self.start_route 
+        self.print_stats_at_end: bool = True
 
         #TODO: Implement these: just to pay special attention
         self.shift_change_trip: int = None #Register a shift change to happen after n trips
@@ -82,26 +83,28 @@ class Ferry:
 
     def end_route(self, current_time) -> None:
         assert self.trips_completed == self.trips_required
-        print(f"{self.ferry_code} has completed their trip at time {current_time}.")
         self.print_and_calculate_stats()
         self.next_function = None
         return
 
     def print_and_calculate_stats(self) -> None:
-        # Combined late time on arrivals and departures
-        late_time = self.sum_late(self.ferry_arrival_time)
-        print(f"Total time with the ferry being late to arrive: {late_time}")
-
-        late_time = self.sum_late(self.ferry_departure_time)
-        print(f"Total time with the ferry being late to depart: {late_time}")
-
-        time_to_be_late = 10
-        times_late_on_arrival = sum([1 for i in self.ferry_arrival_time if i[1]-i[0] > time_to_be_late])
-        print(f"Total times more then {time_to_be_late} increments later then scheduled: {times_late_on_arrival}")
-
-        #The total amount of times the ferry was late at all
-        ferry_late_arrival = sum([1 for i in self.ferry_arrival_time if i[1]-i[0] > 0]) 
-        print(f"The total amount of times the ferry was late at all: {ferry_late_arrival}")
+        if self.print_stats_at_end:
+            print(f"{self.ferry_code} has completed their trip at time {current_time}.")
+            
+            # Combined late time on arrivals and departures
+            late_time = self.sum_late(self.ferry_arrival_time)
+            print(f"Total time with the ferry being late to arrive: {late_time}")
+    
+            late_time = self.sum_late(self.ferry_departure_time)
+            print(f"Total time with the ferry being late to depart: {late_time}")
+    
+            time_to_be_late = 10
+            times_late_on_arrival = sum([1 for i in self.ferry_arrival_time if i[1]-i[0] > time_to_be_late])
+            print(f"Total times more then {time_to_be_late} increments later then scheduled: {times_late_on_arrival}")
+    
+            #The total amount of times the ferry was late at all
+            ferry_late_arrival = sum([1 for i in self.ferry_arrival_time if i[1]-i[0] > 0]) 
+            print(f"The total amount of times the ferry was late at all: {ferry_late_arrival}")
 
     def total_times_late(self, time_to_qualify_as_late: int) -> List[int]:
         """Returns the total amount of times late to arrive and depart, 
