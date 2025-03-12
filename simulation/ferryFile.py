@@ -83,13 +83,14 @@ class Ferry:
 
     def end_route(self, current_time) -> None:
         assert self.trips_completed == self.trips_required
-        self.print_and_calculate_stats()
+        self.print_and_calculate_stats(current_time)
         self.next_function = None
         return
 
-    def print_and_calculate_stats(self) -> None:
+    def print_and_calculate_stats(self, current_time = None) -> None:
         if self.print_stats_at_end:
-            print(f"{self.ferry_code} has completed their trip at time {current_time}.")
+            if current_time is not None:
+                print(f"{self.ferry_code} has completed their trip at time {current_time}.")
             
             # Combined late time on arrivals and departures
             late_time = self.sum_late(self.ferry_arrival_time)
@@ -115,7 +116,6 @@ class Ferry:
         departure_lates = sum([1 for i in self.ferry_departure_time if i[1]-i[0] > time_to_qualify_as_late])
         
         return [arrival_lates, departure_lates]
-        
         
     def sum_late(self, time_array: List[List[int]]) -> int:
         # Combined late time
