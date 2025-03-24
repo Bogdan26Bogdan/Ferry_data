@@ -4,6 +4,9 @@
 
 *.csv
 **/*.csv
+*Zone.Identifier
+**/*Zone.Identifier
+
 
 **/*.pyc
 
