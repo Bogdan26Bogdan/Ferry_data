@@ -4,6 +4,11 @@
 
 *.csv
 **/*.csv
+*.identifier
+**/*.identifier
+
+#Ignore all folders in the simulation folder
+simulation/**/ 
 
 **/*.pyc
 
