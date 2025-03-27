@@ -4,9 +4,11 @@
 
 *.csv
 **/*.csv
-*Zone.Identifier
-**/*Zone.Identifier
+*.identifier
+**/*.identifier
 
+#Ignore all folders in the simulation folder
+simulation/**/ 
 
 **/*.pyc
 
