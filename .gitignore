@@ -6,6 +6,8 @@
 **/*.csv
 *.identifier
 **/*.identifier
+**/*.pkl
+
 
 #Ignore all folders in the simulation folder
 simulation/**/ 
